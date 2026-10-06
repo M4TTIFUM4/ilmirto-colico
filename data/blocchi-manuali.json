@@ -1,0 +1,6 @@
+{
+  "_istruzioni": "Aggiungi qui le prenotazioni ricevute direttamente (non da Airbnb/Booking). Formato date: AAAA-MM-GG. 'partenza' è il giorno del check-out. Le date verranno bloccate sul sito e nel file calendario-diretto.ics da importare su Airbnb e Booking.com.",
+  "prenotazioni": [
+    { "arrivo": "2000-01-01", "partenza": "2000-01-02", "nota": "esempio (data passata, viene ignorata): copia questa riga per aggiungerne altre" }
+  ]
+}

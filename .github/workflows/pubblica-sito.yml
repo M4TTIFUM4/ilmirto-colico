@@ -1,0 +1,62 @@
+# Pubblica il sito su GitHub Pages e sincronizza i calendari Airbnb / Booking.com.
+# Viene eseguito: a ogni modifica del sito, ogni ora in automatico e a mano
+# (scheda "Actions" > "Pubblica sito e sincronizza calendario" > "Run workflow").
+name: Pubblica sito e sincronizza calendario
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 * * * *" # ogni ora (orario UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Sincronizza i calendari iCal
+        env:
+          AIRBNB_ICAL_URL: ${{ secrets.AIRBNB_ICAL_URL }}
+          BOOKING_ICAL_URL: ${{ secrets.BOOKING_ICAL_URL }}
+          EXTRA_ICAL_URLS: ${{ secrets.EXTRA_ICAL_URLS }}
+        run: python3 scripts/sync_calendar.py
+
+      - name: Inserisci l'indirizzo del sito (canonical, sitemap, Open Graph)
+        run: |
+          URL="${{ steps.pages.outputs.base_url }}"
+          TODAY="$(date -u +%Y-%m-%d)"
+          grep -rlE "__SITE_URL__|__BUILD_DATE__" --include=*.html --include=*.xml --include=*.txt --include=*.webmanifest . \
+            | xargs -r sed -i -e "s#__SITE_URL__#${URL}#g" -e "s#__BUILD_DATE__#${TODAY}#g"
+
+      - name: Prepara i file da pubblicare
+        run: |
+          mkdir _site
+          rsync -a --exclude '.git' --exclude '.github' --exclude '.claude' --exclude '.gitignore' --exclude '_site' --exclude 'scripts' --exclude 'README.md' ./ _site/
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
