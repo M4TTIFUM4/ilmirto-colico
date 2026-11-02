@@ -4,7 +4,7 @@
    I campi lasciati vuoti ("") vengono nascosti automaticamente.
    ========================================================= */
 window.SITE_CONFIG = {
-  nome: "Il Mirto",
+  nome: "Il Mirto Fragrante",
 
   // --- Link alle piattaforme ---
   airbnbUrl: "https://www.airbnb.it/rooms/1065201473283140558",

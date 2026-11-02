@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sincronizzazione calendari per Il Mirto (eseguito da GitHub Actions).
+Sincronizzazione calendari per Il Mirto Fragrante (eseguito da GitHub Actions).
 
 1. Scarica i calendari iCal/ICS di Airbnb e Booking.com
    (URL letti dai "secrets" del repository: AIRBNB_ICAL_URL, BOOKING_ICAL_URL).
@@ -127,7 +127,7 @@ def main():
 
     # Calendario delle prenotazioni dirette, da importare su Airbnb/Booking
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Il Mirto//Prenotazioni dirette//IT", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"]
+    ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Il Mirto Fragrante//Prenotazioni dirette//IT", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"]
     for s, e, _ in manual:
         if e <= today:
             continue

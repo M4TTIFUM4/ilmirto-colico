@@ -1,4 +1,4 @@
-# Il Mirto · sito della casa vacanze a Colico
+# Il Mirto Fragrante · sito della casa vacanze a Colico
 
 Sito statico (HTML, CSS, JavaScript) pubblicato gratis su **GitHub Pages**, con calendario
 sincronizzato con Airbnb e Booking.com tramite **GitHub Actions** (anch'esso gratuito).

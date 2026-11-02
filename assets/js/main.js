@@ -1,4 +1,4 @@
-/* Il Mirto — script principale (nessuna dipendenza esterna, Leaflet caricato solo quando serve) */
+/* Il Mirto Fragrante — script principale (nessuna dipendenza esterna, Leaflet caricato solo quando serve) */
 (function () {
   "use strict";
   document.documentElement.classList.remove("no-js");
@@ -199,7 +199,7 @@
         return L.divIcon({ className: "pin " + (cls || ""), html: "<span><i>" + label + "</i></span>", iconSize: [34, 34] });
       };
       L.marker(home, { icon: icon("★", "pin--home"), zIndexOffset: 1000 }).addTo(map)
-        .bindPopup("<b>" + (CFG.nome || "Il Mirto") + "</b>Casa vacanze in centro a Colico");
+        .bindPopup("<b>" + (CFG.nome || "Il Mirto Fragrante") + "</b>Casa vacanze in centro a Colico");
       var bounds = [home];
       $$(".poi").forEach(function (li, idx) {
         var ll = [parseFloat(li.dataset.lat), parseFloat(li.dataset.lng)];
@@ -416,7 +416,7 @@
       };
     };
     var text = function (d) {
-      return "Ciao! Vorrei richiedere un soggiorno a " + (CFG.nome || "Il Mirto") + ".\n" +
+      return "Ciao! Vorrei richiedere un soggiorno a " + (CFG.nome || "Il Mirto Fragrante") + ".\n" +
         "Arrivo: " + d.arrivo + "\nPartenza: " + d.partenza + " (" + d.notti + " notti)\n" +
         "Ospiti: " + d.ospiti + "\nAnimali: " + d.animali + "\n" +
         "Nome: " + d.nome + "\nEmail: " + d.email + (d.telefono ? "\nTelefono: " + d.telefono : "") +
