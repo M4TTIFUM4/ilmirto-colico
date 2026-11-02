@@ -11,8 +11,8 @@ window.SITE_CONFIG = {
   bookingUrl: "", // es. "https://www.booking.com/hotel/it/nome-struttura.it.html"
 
   // --- Contatti (vuoto = non mostrato) ---
-  email: "",      // es. "info@esempio.it"
-  telefono: "",   // es. "+39 333 123 4567"
+  email: "info@ilmirtofragrante.it",
+  telefono: "+39 329 215 1534",
   whatsapp: "",   // solo cifre con prefisso internazionale, es. "393331234567"
   indirizzo: "Colico (LC), Lago di Como — in centro, vicino alla stazione",
 
