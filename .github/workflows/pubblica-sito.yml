@@ -38,6 +38,7 @@ jobs:
       - name: Inserisci l'indirizzo del sito (canonical, sitemap, Open Graph)
         run: |
           URL="${{ steps.pages.outputs.base_url }}"
+          URL="${URL/#http:///https://}"
           TODAY="$(date -u +%Y-%m-%d)"
           grep -rlE "__SITE_URL__|__BUILD_DATE__" --include=*.html --include=*.xml --include=*.txt --include=*.webmanifest . \
             | xargs -r sed -i -e "s#__SITE_URL__#${URL}#g" -e "s#__BUILD_DATE__#${TODAY}#g"
